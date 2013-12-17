@@ -1,0 +1,27 @@
+[
+	{
+		name: "Basic",
+		winScore: 7,
+		rackCenter:   {x: 0.5, y: 0.75},
+		shooterStart: {x:0.5, y: 0.22},
+		holes: [ {x:0.09, y:0.20},  {x:0.91, y:0.20}, {x:0.09, y:0.88},  {x:0.91, y:0.88}, 
+		         {x:0.2, y:0.52}, {x:0.8, y: 0.52} ],
+		bumpers: [    ]
+	},
+	{
+		name: "Bumpers",
+      winScore: 5,
+		rackCenter:   {x: 0.5, y: 0.6},
+      shooterStart: {x:0.5, y: 0.22},
+      holes: [ {x:0.16, y:0.18},  {x:0.84, y:0.18}, {x:0.16, y:0.85},  {x:0.86, y:0.85} ],
+      bumpers: [  {x:0.5, y: 0.16},  {x:0.25, y: 0.75}, {x:0.75, y: 0.75} , {x:0.15, y: 0.5},{x:0.85, y: 0.5}]
+   },
+   {
+      name: "Triangles",
+      winScore: 5,
+      rackCenter:   {x: 0.5, y: 0.6},
+      shooterStart: {x:0.5, y: 0.22},
+      holes: [ {x:0.5, y:0.88},  {x:0.18, y:0.2},  {x:0.82, y:0.2} ],
+      bumpers: [   {x:0.5, y: 0.78}, {x:0.3, y: 0.35}, {x:0.7, y: 0.35} ]
+   }
+]
