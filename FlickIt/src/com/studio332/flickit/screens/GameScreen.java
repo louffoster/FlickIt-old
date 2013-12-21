@@ -160,7 +160,9 @@ public class GameScreen extends AbstractScreen implements ContactListener, State
       float angle = (float) (Math.atan2(dY, dX) * 180 / Math.PI + 90);
       this.angleArrow.setRotation(angle);
       Puck shooter = findCurrentShooter();
-      shooter.setFlickAngle(angle);
+      if (shooter != null) {
+         shooter.setFlickAngle(angle);
+      }
    }
    
    private void addScoreAndTimer() {
