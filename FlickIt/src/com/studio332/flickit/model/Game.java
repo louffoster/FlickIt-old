@@ -92,13 +92,13 @@ public class Game {
    }
    
    public void startTurn() {
-      this.state = State.PLAYING;
-      if ( this.needToPlaceShooter[this.currPlayer-1]) {
-         this.state = State.PLACE_SHOOTER;
-      }
       if ( this.listener != null ) {
          this.listener.startTurn();
       }
+   }
+   
+   public boolean placeShooter() {
+      return this.needToPlaceShooter[this.currPlayer-1];
    }
    
    public void shotComplete() {

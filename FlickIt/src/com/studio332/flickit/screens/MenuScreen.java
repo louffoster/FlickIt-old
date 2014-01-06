@@ -93,6 +93,13 @@ public class MenuScreen extends AbstractScreen {
          txt.setName(""+i);
          txt.setPosition(100+(i-1)*130, this.menuGroup.getHeight()-240);
          this.menuGroup.addActor(txt);
+         
+         if ( Settings.instance().getNumPlayers() > 1 ) {
+            if (Settings.instance().getNumPlayers() == i ) {
+               underline.setX( txt.getX()+5 );
+            }
+         }
+         
          txt.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

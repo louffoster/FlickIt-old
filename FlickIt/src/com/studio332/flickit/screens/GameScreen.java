@@ -204,8 +204,6 @@ public class GameScreen extends AbstractScreen implements ContactListener, State
       this.angleArrow = new Image( Assets.instance().getDrawable("arrow"));
       this.stage.addActor(this.angleArrow);
       this.angleArrow.setVisible(false);
-      
-      this.game.setState(State.PLACE_SHOOTER);
    }
    
    private void attachArrowToShooter() {
@@ -618,6 +616,7 @@ public class GameScreen extends AbstractScreen implements ContactListener, State
          @Override
          public boolean act(float delta) {
             shotMeter.showMessage("Tap to place your shooter below the line");
+            game.setState(State.PLACE_SHOOTER);
             return true;
          }
       }));
@@ -628,18 +627,19 @@ public class GameScreen extends AbstractScreen implements ContactListener, State
       removePopup();
       updateScore();
       this.shotMeter.updateShooterIcon();
-      this.shotMeter.setShotListener( findCurrentShooter() );
-
-      if ( this.game.getState() == State.PLACE_SHOOTER ) {
+      if ( this.game.placeShooter() ) {
          this.stage.addAction(Actions.sequence(Actions.delay(0.75f), new Action() {
             @Override
             public boolean act(float delta) {
                shotMeter.showMessage("Tap to place your shooter below the line");
+               game.setState(State.PLACE_SHOOTER);
                return true;
             }
          }));
       } else {
+         this.shotMeter.setShotListener( findCurrentShooter() );
          attachArrowToShooter();
+         this.game.setState(State.PLAYING);
       }
    }
 
@@ -715,7 +715,13 @@ public class GameScreen extends AbstractScreen implements ContactListener, State
    
    @Override
    protected boolean backClicked() {
-      if ( this.game.isPlaying() ) {
+      if ( this.game.getState() == State.INIT ) {
+         this.game.startGame();
+         return true;
+      } else if ( this.game.getState() == State.TURN_START ) {
+         this.game.startTurn();
+         return true;
+      } else if ( this.game.isPlaying() ) {
          this.game.pauseGame();
          this.shotMeter.disable();
          Popup p = new Popup(this.game);
